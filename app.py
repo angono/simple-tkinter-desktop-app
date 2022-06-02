@@ -127,6 +127,9 @@ class HomePageView(object):
             if entry_product_name.get() or entry_product_unit_price.get() or entry_product_quantity.get() or entry_product_total_price.get():
                 for row in db.search_products(entry_product_name.get(),entry_product_unit_price.get(),entry_product_quantity.get(),entry_product_total_price.get()):
                     tv.insert("", END, values=row)
+                if db.search_products(entry_product_name.get(),entry_product_unit_price.get(),entry_product_quantity.get(),entry_product_total_price.get()) == []:
+                    messagebox.showerror("Not Found","This product does not exist.", parent=root)
+                    displayAll()
             else:
                 messagebox.showerror("Error","This product does not exist.", parent=root)
                 displayAll() 
